@@ -18,3 +18,22 @@ connection.once('open', function () {
 app.listen(PORT, function () {
   console.log("Server is runnin on port: " + PORT);
 });
+
+app.get('/', (req, res) => {
+  res.json({"ads": ads})
+});
+
+const ads = [
+    {
+      "adName": "Advertisement 01",
+      "adType": "Real estate",
+    },
+    {
+      "adName": "Advertisement 02",
+      "adType": "Automotive",
+    },
+    {
+      "adName": "Advertisement 03",
+      "adType": "Education",
+    },
+  ]
