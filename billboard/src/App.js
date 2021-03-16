@@ -1,18 +1,26 @@
 import Home from './pages/home';
 import Main from './pages/main';
-import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
+import Advertisements from './pages/advertisements.component';
+import {BrowserRouter as Router,Route,Switch, Link} from 'react-router-dom';
 import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import axios from 'axios';
 
 function App() {
   return (
-  <div>
     <Router>
+    <div>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light float-right">
+        <Link to="/" className="nav-link">Dashboard</Link>
+        <Link to="/advertisements" className="nav-link">Advertisements</Link>
+      </nav>
       <Switch>
-        <Route exact path='/' component={Home} />
-        <Route path='/main' component={Main}/>
+        <Route exact path='/' component={Main} /> // was changed from home to main
+        // <Route path='/main' component={Main}/>
+        <Route path='/advertisements' component={ Advertisements } />
       </Switch>
+      </div>
     </Router>
-  </div>
   )
 }
 
