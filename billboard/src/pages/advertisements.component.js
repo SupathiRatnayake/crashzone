@@ -1,53 +1,104 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { Component } from "react";
+import AdvertisementDataService from "../services/advertisement.service";
 
-const Advertisement = props =>(
-	<tr>
-		<td>{props.ad.adName}</td>
-		<td>{props.ad.adType}</td>
-	</tr>
-)
+import Advertisement from "./advertisement.component";
 
-export default class adList extends Component {
+export default class advertisementsList extends Component {
+  constructor(props) {
+    super(props);
+    this.refreshList = this.refreshList.bind(this);
+    this.setActiveAdvertisement = this.setActiveAdvertisement.bind(this);
+    // this.removeAlladvertisements = this.removeAlladvertisements.bind(this);
+    this.onDataChange = this.onDataChange.bind(this);
 
-	constructor(props){
-		super(props);
-		this.state = {ads: []};
-	}
+    this.state = {
+      advertisements: [],
+      currentAdvertisement: null,
+      currentIndex: -1,
+    };
+  }
 
-	componentDidMount(){
-		axios.get('http://localhost:4000/')
-		.then(response =>{
-			this.setState({ ads: response.data.ads });
-		})
-		.catch(function(error){
-			console.log(error);
-		})
-	}
+  componentDidMount() {
+    AdvertisementDataService.getAll().on("value", this.onDataChange);
+  }
 
-	adList(){
-		return this.state.ads.map(function(currentad, i){
-			return <Advertisement ad={currentad} key={i} />;
-		})
-	}
+  componentWillUnmount() {
+    AdvertisementDataService.getAll().off("value", this.onDataChange);
+  }
 
-	render(){
-		return(
-			<div>
-				<h3>Advertisements</h3>
-				<table className="table table-striped" style={{marginTop: 20 }}>
-					<thead>
-						<tr>
-							<th>Advertisement name</th>
-							<th>Advertisement Type</th>
-						</tr>
-					</thead>
-					<tbody>
-					{ this.adList() }
-					</tbody>
-				</table>
-			</div>
-		)
-	}
+  onDataChange(items) {
+    let advertisements = [];
+
+    items.forEach((item) => {
+      let key = item.key;
+      let data = item.val();
+      advertisements.push({
+        key: key,
+        name: data.name,
+        targetProfessionals: data.targetProfessionals,
+        imageURL: data.imageURL,
+      });
+    });
+
+    this.setState({
+      advertisements: advertisements,
+    });
+  }
+
+  refreshList() {
+    this.setState({
+      currentAdvertisement: null,
+      currentIndex: -1,
+    });
+  }
+
+  setActiveAdvertisement(Advertisement, index) {
+    this.setState({
+      currentAdvertisement: Advertisement,
+      currentIndex: index,
+    });
+  }
+
+  removeAllAdvertisements() {
+    AdvertisementDataService.deleteAll()
+      .then(() => {
+        this.refreshList();
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
+
+  render() {
+    const { advertisements, currentAdvertisement, currentIndex } = this.state;
+
+    return (
+      <div className="list row">
+        <div className="col-md-6">
+          <h4>advertisements List</h4>
+
+          <ul className="list-group">
+            {advertisements &&
+              advertisements.map((Advertisement, index) => (
+                <li
+                  className={
+                    "list-group-item " +
+                    (index === currentIndex ? "active" : "")
+                  }
+
+                  key={index}
+                >
+                  <p> {Advertisement.name} </p>
+									<img src={Advertisement.imageURL} alt=""></img>
+
+                </li>
+              ))}
+          </ul>
+
+        </div>
+
+      </div>
+    );
+  }
+
 }
