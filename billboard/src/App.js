@@ -20,6 +20,7 @@ function App() {
         <Route exact path='/' component={Main} /> // was changed from home to main
         // <Route path='/main' component={Main}/>
         <Route path='/advertisements' component={ Advertisements } />
+        <Route path='/display' component = { DisplayAd } />
       </Switch>
       </div>
     </Router>
