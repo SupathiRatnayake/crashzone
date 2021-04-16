@@ -1,5 +1,3 @@
-
-
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
 import * as faceapi from 'face-api.js';
 
@@ -30,7 +28,7 @@ export default function sketch (p) {
 
         p.createCanvas(1280, 720);
         const constraints = {
-            video: {
+            videoElement: {
               mandatory: {
                 minWidth: 1280,
                 minHeight: 720
@@ -44,7 +42,7 @@ export default function sketch (p) {
         });
 
         
-        capture.id("video_element");
+        capture.id("videoElement");
         capture.size(1280, 720);
         capture.hide();
 
@@ -134,7 +132,7 @@ export default function sketch (p) {
         if(capture.loadedmetadata) {
             if (cocossdModel) {
                 cocossdModel
-                .detect(document.getElementById("video_element"))
+                .detect(document.getElementById("videoElement"))
                 .then(showCocoSSDResults)
                 .catch((e) => {
                     console.log("Exception : ", e);

@@ -15,7 +15,7 @@ class Main extends React.Component{
     streamCamVideo() {
 
 
-      window.location.href = "https://sdgp-207ed.web.app/";
+      window.location.href = "https://kwq2oy7mgnlb1tjbzla72w-on.drv.tw/www.sdgp-object-detection.com/outfit-recognition.html";
       
       }
     stopStream(){
