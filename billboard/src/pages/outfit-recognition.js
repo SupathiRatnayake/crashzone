@@ -1,21 +1,36 @@
-// Store the resulting model in the global scope of our app.
-var model = undefined;
+let canvas, ctx, saveButton, clearButton;
+let pos = { x: 0, y: 0 };
+let rawImage;
+let model;
+let mousePressed = false;
+let lastX, lastY;
 
-// Before we can use COCO-SSD class we must wait for it to finish
-// loading. Machine Learning models can be large and take a moment 
-// to get everything needed to run.
-// Note: cocoSsd is an external object loaded from our index.html
-// script tag import so ignore any warning in Glitch.
-cocoSsd.load().then(function (loadedModel) {
-  model = loadedModel;
-  // Show demo section now model is ready to use.
-  demosSection.classList.remove('invisible');
-});
+//load model to the browser
+const main = async () => {
+  model = await tf.loadLayersModel("http://127.0.0.1:8080/model/outfit-detection-model/model.json");
+  console.log(model.summary());
+
+  //Enable webcam:
+  enableWebcamButton.classList.remove('invisible');
+  enableWebcamButton.innerHTML = 'Start camera';
+  
+  predictWebcam();
+};
 
 const video = document.getElementById('webcam');
 const liveView = document.getElementById('liveView');
+const webcamPredictions = document.getElementById('webcamPredictions');
 const demosSection = document.getElementById('demos');
 const enableWebcamButton = document.getElementById('webcamButton');
+
+const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+var vidWidth = 0;
+var vidHeight = 0;
+var xStart = 0;
+var yStart = 0;
+
+var modelHasLoaded = false;
 
 // Check if webcam access is supported.
 function getUserMediaSupported() {
@@ -26,96 +41,131 @@ function getUserMediaSupported() {
 // If webcam supported, add event listener to button for when user
 // wants to activate it to call enableCam function
 if (getUserMediaSupported()) {
+  const enableWebcamButton = document.getElementById('webcamButton');
   enableWebcamButton.addEventListener('click', enableCam);
 } else {
   console.warn('getUserMedia() is not supported by your browser');
-}
-
-// Placeholder function for next step
-function enableCam(event) {
 }
 
 //Enable the live webcam view and start classification.
 function enableCam(event) {
   // Only continue if the COCO-SSD has finished loading.
   if (!model) {
+    console.log('Wait! Model is not loaded yet')
     return;
   }
   
   // Hide the button once clicked.
-  event.target.classList.add('removed');  
+  enableWebcamButton.classList.add('removed');
   
   // getUsermedia parameters to force video but not audio.
   const constraints = {
     video: true
   };
 
-  // Activate the webcam stream.
-  navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
-    video.srcObject = stream;
-    video.addEventListener('loadeddata', predictWebcam);
+  navigator.mediaDevices.getUserMedia({
+    video: {
+      facingMode: "environment"
+    },
+  }).then(stream => {
+    let $video = document.querySelector('video');
+    $video.srcObject = stream;
+    $video.onloadedmetadata = () => {
+      vidWidth = $video.videoHeight;
+      vidHeight = $video.videoWidth;
+      //The start position of the video (from top left corner of the viewport)
+      xStart = Math.floor((vw - vidWidth) / 2);
+      yStart = (Math.floor((vh - vidHeight) / 2)>=0) ? (Math.floor((vh - vidHeight) / 2)):0;
+      $video.play();
+      //Attach detection model to loaded data event:
+      $video.addEventListener('loadeddata', predictWebcam);
+    }
   });
 }
-
-// Placeholder function for next step.
-function predictWebcam() {
-}
-
-// Pretend model has loaded
-var model = true;
-demosSection.classList.remove('invisible');
-
-// Store the resulting model in the global scope of our app.
-var model = undefined;
-
-// Before we can use COCO-SSD class we must wait for it to finish
-// loading. Machine Learning models can be large and take a moment 
-// to get everything needed to run.
-// Note: cocoSsd is an external object loaded from our index.html
-cocoSsd.load().then(function (loadedModel) {
-  model = loadedModel;
-  // Show demo section now model is ready to use.
-  demosSection.classList.remove('invisible');
-});
 
 var children = [];
 
-function predictWebcam() {
-  // classifying a frame in the stream.
-  model.detect(video).then(function (predictions) {
-    // Remove any highlighting in previous frame.
-    for (let i = 0; i < children.length; i++) {
-      liveView.removeChild(children[i]);
-    }
-    children.splice(0);
-    
-    // loop through predictions and draw them to the live view if
-    for (let n = 0; n < predictions.length; n++) {
-      
-      if (predictions[n].score > 0.66) {
-        const p = document.createElement('p');
-        p.innerText = predictions[n].class  + ' - with ' 
-            + Math.round(parseFloat(predictions[n].score) * 100) 
-            + '% confidence.';
-        p.style = 'margin-left: ' + predictions[n].bbox[0] + 'px; margin-top: '
-            + (predictions[n].bbox[1] - 10) + 'px; width: ' 
-            + (predictions[n].bbox[2] - 10) + 'px; top: 0; left: 0;';
+function predict() {
+  let raw = tf.browser.fromPixels(rawImage, 1);
+  let resize = tf.image.resizeBilinear(raw, [28, 28]);
+  let tensor = resize.expandDims(0);
+  let predictions = model.predict(tensor);
+  let pindex = tf.argMax(predictions, 1).dataSync();
+  var classNames = [
+    "T-shirt/top",
+    "Trouser",
+    "Pullover",
+    "Dress",
+    "Coat",
+    "Sandal",
+    "Shirt",
+    "Sneaker",
+    "Bag",
+    "Ankle boot",
+  ];
 
-        const highlighter = document.createElement('div');
-        highlighter.setAttribute('class', 'highlighter');
-        highlighter.style = 'left: ' + predictions[n].bbox[0] + 'px; top: '
-            + predictions[n].bbox[1] + 'px; width: ' 
-            + predictions[n].bbox[2] + 'px; height: '
-            + predictions[n].bbox[3] + 'px;';
-
-        liveView.appendChild(highlighter);
-        liveView.appendChild(p);
-        children.push(highlighter);
-        children.push(p);
-      }
-    }
-    
-    // keep predicting when the browser is ready
-    window.requestAnimationFrame(predictWebcam);
-  });
+  alert(classNames[pindex]);
 }
+
+function init() {
+  canvas = document.getElementById("canvas");
+  rawImage = document.getElementById("canvasimg");
+  ctx = canvas.getContext("2d");
+  ctx.fillStyle = "black";
+  ctx.fillRect(0, 0, 280, 280);
+
+  $("#canvas").mousedown(function (e) {
+    console.log(1);
+    mousePressed = true;
+    Draw(
+      e.pageX - $(this).offset().left,
+      e.pageY - $(this).offset().top,
+      false
+    );
+  });
+
+  $("#canvas").mousemove(function (e) {
+    if (mousePressed) {
+      Draw(
+        e.pageX - $(this).offset().left,
+        e.pageY - $(this).offset().top,
+        true
+      );
+    }
+  });
+
+  $("#canvas").mouseup(function (e) {
+    mousePressed = false;
+  });
+  $("#canvas").mouseleave(function (e) {
+    mousePressed = false;
+  });
+
+  saveButton = document.getElementById("sb");
+  saveButton.addEventListener("click", predict);
+  clearButton = document.getElementById("cb");
+  clearButton.addEventListener("click", erase);
+}
+
+function Draw(x, y, isDown) {
+  if (isDown) {
+    ctx.beginPath();
+    ctx.strokeStyle = "white";
+    ctx.lineWidth = 24;
+    ctx.lineJoin = "round";
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(x, y);
+    ctx.closePath();
+    ctx.stroke();
+    rawImage.src = canvas.toDataURL("image/png");
+  }
+  lastX = x;
+  lastY = y;
+}
+
+function erase() {
+  ctx.fillStyle = "black";
+  ctx.fillRect(0, 0, 280, 280);
+}
+
+

@@ -1,5 +1,4 @@
-node_modules/
-
-
-billboard/.eslintcache
-billboard/.eslintcache
+/node_modules
+/backend/node_modules
+/billboard/node_modules
+/billboard/.eslintcache
