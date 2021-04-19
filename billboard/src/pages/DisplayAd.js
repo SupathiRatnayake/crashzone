@@ -69,7 +69,7 @@ class DisplayAd extends React.Component{
     ];
     return (
       <div className="App">
-        <h3>Slide Effect</h3>
+      
         <div className="slide-container">
           <Slide ref={this.slideRef} {...properties}>
             {slideImages.map((each, index) => (
