@@ -75,7 +75,7 @@ export default class advertisementsList extends Component {
     return (
       <div className="list row">
         <div className="col-md-6">
-          <h4>advertisements List</h4>
+          <h4>All Ads</h4>
 
           <ul className="list-group">
             {advertisements &&

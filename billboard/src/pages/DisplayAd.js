@@ -4,7 +4,7 @@ import 'react-slideshow-image/dist/styles.css'
 
 
 class DisplayAd extends React.Component{
-   
+
   constructor() {
     super();
     this.slideRef = React.createRef();
@@ -12,10 +12,9 @@ class DisplayAd extends React.Component{
     this.next = this.next.bind(this);
     this.state = {
       current: 0
-    }; 
+    };
   }
 
-  
   back() {
     this.slideRef.current.goBack();
   }
@@ -70,7 +69,7 @@ class DisplayAd extends React.Component{
     ];
     return (
       <div className="App">
-        
+      
         <div className="slide-container">
           <Slide ref={this.slideRef} {...properties}>
             {slideImages.map((each, index) => (
@@ -92,7 +91,7 @@ class DisplayAd extends React.Component{
       </div>
     );
   }
-  
+
     
 }
 export default DisplayAd;
