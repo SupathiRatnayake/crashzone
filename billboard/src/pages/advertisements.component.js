@@ -96,7 +96,6 @@ export default class advertisementsList extends Component {
           </ul>
 
         </div>
-
       </div>
     );
   }
