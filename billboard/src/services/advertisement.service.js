@@ -2,7 +2,7 @@ import firebase from "../firebase";
 
 const db = firebase.ref("/advertisements");
 
-class AdDataService {
+class TutorialDataService {
   getAll() {
     return db;
   }
@@ -24,4 +24,4 @@ class AdDataService {
   }
 }
 
-export default new AdDataService();
+export default new TutorialDataService();

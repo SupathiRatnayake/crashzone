@@ -1,4 +1,3 @@
-import AdvertisementDataService from "../services/advertisement.service";
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -20,6 +19,21 @@ app.listen(PORT, function () {
   console.log("Server is runnin on port: " + PORT);
 });
 
-app.get('/ads', (req, res) => {
-  res.json(AdvertisementDataService.getAll())
+app.get('/', (req, res) => {
+  res.json({"ads": ads})
 });
+
+const ads = [
+    {
+      "adName": "Advertisement 01",
+      "adType": "Real estate",
+    },
+    {
+      "adName": "Advertisement 02",
+      "adType": "Automotive",
+    },
+    {
+      "adName": "Advertisement 03",
+      "adType": "Education",
+    },
+  ]
