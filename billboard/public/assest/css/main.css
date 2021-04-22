@@ -1,7 +1,7 @@
 body{
 	margin:0;
 	color:#6a6f8c;
-	background:#c8c8c8;
+	background-color:#035046;
 	font:600 16px/18px 'Open Sans',sans-serif;
 }
 *,:after,:before{box-sizing:border-box}
@@ -149,14 +149,6 @@ a{color:inherit;text-decoration:none}
 	text-align:center;
 }
 
-video{
-  position: fixed;
-  right:10%;
-  top: 10%;
-  height: 70%;
-  width: 50%;
-}
-
 .startBtn{
   position: fixed;
   left:14%;
@@ -203,4 +195,206 @@ video{
 
 .stopBtn:hover {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+nav {
+	background-color: black;
+	height: 70px;
+	font-size: 25px;
+	text-align: center;
+	padding-top: 17px;
+	font-family: 'Bauhaus';
+	font-weight: bold;
+}
+
+.navLink {
+	text-decoration: none;
+	color: rgb(20, 206, 165);
+	padding-left: 120px;
+	padding-right: 120px;
+}
+
+.navLink:hover {
+	text-decoration: none;
+	color: rgb(157, 185, 182);
+}
+
+video {
+	right: -90px;
+	margin: 0%;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+}
+
+::-webkit-scrollbar {
+	width: 2px;
+  }
+  
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 5px grey; 
+	border-radius: 10px;
+ }
+   
+::-webkit-scrollbar-thumb {
+	background: rgb(5, 240, 201); 
+	border-radius: 10px;
+}
+
+.imgLogo{
+	float: left;
+	width: 50px;
+	height: 53px;
+	position: relative;
+	top: -8px;
+	left: 30px;
+}
+
+footer{
+	height: 300px;
+	position: relative;
+	left: 0;
+	bottom: 75px;
+	width: 100%;
+	background-color: rgb(43, 43, 43);
+	border-top: solid rgb(0, 255, 179) 2px;
+}
+
+.copyrightText{
+	text-align: center;
+	position: relative;
+	top: -30px;
+}
+
+.footerInfo{
+	position: relative;
+	top: 100px;
+	left: 450px;
+	float: left;
+	color: rgb(180, 187, 186);
+}
+
+.footerComp{
+	float: right;
+	position: relative;
+	top: -80px;
+	right: 150px;
+	text-align: justify;
+	color: rgb(180, 187, 186);
+
+}
+
+h3{
+	color: rgb(20, 206, 165);
+	font-family: Freshbot;
+}
+
+h4{
+	position: relative;
+	left: 40px;
+}
+
+.footerimg{
+	position: relative;
+	left: 40%;
+	top: 70px;
+	height: 150px;
+	width: 150px;
+}
+
+.wtapicon{
+	height: 40px;
+	width: 40px;
+	position: relative;
+	top: -25px;
+	left: 120px;
+}
+
+.callicon{
+	width: 40px;
+	height: 40px;
+	position: relative;
+	top:28px;
+	left: 80px;
+}
+
+.fbicon{
+	width: 40px;
+	height: 40px;
+	position: relative;
+	top: -80px;
+	left: 200px;
+}
+
+.twittericon{
+	width: 40px;
+	height: 40px;
+	position: relative;
+	top: 80px;
+	left: 160px;
+}
+
+.footerLink{
+	text-decoration: none;
+	font-family: 'Bauhaus';
+	color: rgb(20, 206, 165);
+
+}
+
+.footerLink:hover{
+	text-decoration: none;
+	color: rgb(20, 206, 165);
+}
+
+.abtimg{
+	width: 400px;
+	height: 400px;
+	margin-bottom: 100px;
+	position: relative;
+	left: 37%;
+}
+
+.descp{
+	color: rgb(116, 116, 116);
+	position: relative;
+	bottom: 70px;
+	left: 8%;
+	margin-bottom: 70px;
+}
+
+.card{
+	background-color: black;
+	height: 100%;
+	width: 100%;
+	color: white;
+}
+
+.teamh3{
+	color: rgb(20, 206, 165);
+	font-family: Freshbot;
+	font-size: 60px;
+	padding-top: 40px;
+	text-align: center;
+}
+
+.teamh4{
+	color: rgb(136, 136, 136);
+	font-family: 'Bauhaus';
+	font-size: 40px;
+	text-align: center;
+	position: relative;
+	left: 0px;
+}
+
+.list{
+	color: white;
+	text-align: center;
+	position: relative;
+	left: -20px;
+	list-style-type: none;
+	padding-top: 30px;
+	font-family: 'Bauhaus';
+	font-size: 20px;
+	padding-bottom: 200px;
 }
