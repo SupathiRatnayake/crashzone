@@ -15,7 +15,11 @@ class Main extends React.Component{
     streamCamVideo() {
 
 
+<<<<<<< HEAD
       window.location.href = "https://kwq2oy7mgnlb1tjbzla72w-on.drv.tw/www.sdgp-object-detection.com/outfit-recognition.html";
+=======
+      window.location.href = "https://sdgp-207ed.web.app/";
+>>>>>>> parent of 00b6b63 (Revert "Merge branch 'main' into 2019422")
       
       }
     stopStream(){
