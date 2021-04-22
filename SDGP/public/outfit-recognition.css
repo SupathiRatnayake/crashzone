@@ -1,0 +1,82 @@
+body {
+  font-family: helvetica, arial, sans-serif;
+  margin: 1em;
+  color: #faf8f8;
+  background-image: url('bgimg.jpg');
+  background-color: black;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+   /* Do not repeat the image */
+
+}
+
+h1 {
+  font-style: italic;
+  color: #FF6F00;
+}
+
+video {
+  display: block;
+}
+
+section {
+  opacity: 1;
+  transition: opacity 500ms ease-in-out;
+}
+
+.removed {
+  display: none;
+}
+
+.invisible {
+  opacity: 0.2;
+}
+
+#webcamButton {
+  background-color: rgb(107, 107, 107);
+  border-radius: 10px;
+  width: 400px;
+  font-family: 'Bauhaus';
+  font-size: 30px;
+  height: 80px;
+  color: black;
+  border: 3px solid #0bd397; 
+  position: relative;
+  left: 15%;
+  top: 100px;
+  transition-duration: 0.4s;
+  margin: 200px 300px;
+}
+#webcamButton:hover {
+  background-color: #343535;
+  color: #0bd397; 
+}
+.camView {
+  position: relative;
+  float: left;
+  width: calc(100% - 20px);
+  margin: 10px;
+  cursor: pointer;
+}
+
+.camView p {
+  position: absolute;
+  padding: 5px;
+  background-color: rgba(255, 111, 0, 0.85);
+  color: #FFF;
+  border: 1px dashed rgba(255, 255, 255, 0.7);
+  z-index: 2;
+  font-size: 12px;
+}
+
+.highlighter {
+  background: rgba(0, 255, 221, 0.25);
+  border: 1px dashed #fff;
+  z-index: 1;
+  position: absolute;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+  }
