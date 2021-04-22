@@ -12,7 +12,7 @@ class Header extends React.Component{
                     <ul>
                         <Link to="/"  class="navLink">Home</Link>
                         <Link to="/advertisements" class="navLink">Advertisements</Link>
-                        <Link to= "/display"  class="navLink">DisplayAd</Link>
+                        <Link to= "/display"  class="navLink">Display Ad</Link>
                         <a  class="navLink" href ="https://sdgp-207ed.web.app/">Dashboard</a>
                     </ul>
               </nav>
