@@ -13,7 +13,7 @@ class Header extends React.Component{
                         <Link to="/"  class="navLink">Home</Link>
                         <Link to="/advertisements" class="navLink">Advertisements</Link>
                         <Link to= "/display"  class="navLink">DisplayAd</Link>
-                        <a  class="navLink" href ="https://kwq2oy7mgnlb1tjbzla72w-on.drv.tw/www.sdgp-object-detection.com/outfit-recognition.html">Dashboard</a>
+                        <a  class="navLink" href ="https://sdgp-207ed.web.app/">Dashboard</a>
                     </ul>
               </nav>
             </header>
