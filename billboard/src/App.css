@@ -1,10 +1,13 @@
 .slide-container {
-    width: 70%;
+    width: 100%;
     margin: auto;
+    position: relative;
+    height: 350px;
+    background-color: black;
   }
   
-  h3 {
-    text-align: center;
+  .bd{
+    background-color: black;
   }
   
   .each-slide > div {
@@ -28,11 +31,13 @@
   
   .each-fade .image-container {
     width: 75%;
+
     overflow: hidden;
   }
   
   .each-fade .image-container img {
     width: 100%;
+
   }
   
   .each-fade h2 {
@@ -46,19 +51,38 @@
   
   .indicator {
     width: 30px;
-    color: blue;
+    color: rgb(0, 255, 179);
     text-align: center;
     cursor: pointer;
-    border: 1px blue solid;
+    border: 1px rgb(0, 255, 234) solid;
   }
   .indicator.active {
     background: #000;
-    color: #fff;
+    color: rgb(124, 124, 124);
   }
   .list-row {
-    height: 1000;
+    height: 1000px;
   }
   .list-group-item {
-    height: 400 ;
+    height: 400px ;
   }
   
+  button{
+    width: 100px;
+    position: relative;
+    left: 45%;
+    background-color: rgb(48, 48, 48);
+    color: rgb(255, 255, 255);
+    border: solid 2px rgb(6, 255, 172);
+    border-radius: 10px;
+
+  }
+
+  button:hover{
+    background-color: black;
+    color:rgb(6, 255, 172) ;
+  }
+
+  .imgCard{
+    height: 400px;
+  }

@@ -68,13 +68,14 @@ class DisplayAd extends React.Component{
     
     ];
     return (
-      <div className="App">
-      
-        <div className="slide-container">
+      <div class="App">
+        <div class="slide-container">
           <Slide ref={this.slideRef} {...properties}>
             {slideImages.map((each, index) => (
               <div key={index} className="each-slide">
+                <div class="imgCard">
                 <img className="lazy" src={each} alt="sample" />
+                </div>
               </div>
             ))}
           </Slide>
