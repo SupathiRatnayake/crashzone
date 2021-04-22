@@ -1,0 +1,38 @@
+body{
+	background-color: rgb(1, 13, 39);
+}
+
+.btnOne{
+	height: 100px;
+	width: 300px;
+	background-color: white;
+	text-align: center;
+	padding-top: 40px;
+	border-radius: 15px;
+	font-size: 30px;
+	position: absolute;	
+	top: 30%;
+	left: 40%;
+
+}
+
+.btnTwo{
+	height: 100px;
+	width: 300px;
+	background-color: white;
+	text-align: center;
+	padding-top: 20px;
+	border-radius: 15px;
+	font-size: 30px;
+	position: absolute;	
+	top: 50%;
+	left: 40%;
+}
+
+.btnOne:hover{
+	box-shadow: 3px 10px 3px rgba(196, 194, 194, 0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.btnTwo:hover{
+	box-shadow: 3px 10px 3px rgba(196, 194, 194, 0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
