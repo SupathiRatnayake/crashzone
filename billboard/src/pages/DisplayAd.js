@@ -37,9 +37,9 @@ class DisplayAd extends React.Component{
     }else if( predictionResult == 't-shirt' || predictionResult == 'shorts' || predictionResult == 'blouse') {
       console.log('ad class = non professional!')
     }else if(predictionResult == 'outwear' || predictionResult =='shoes'){
-      console.log('ad class = Cassual!')
+      console.log('ad class = casual!')
     }else{
-      console.log('ad class = Genaral!')
+      console.log('ad class = genaral!')
     }
 
   }

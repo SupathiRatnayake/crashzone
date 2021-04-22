@@ -5,10 +5,10 @@ class TeamMem extends React.Component{
         return(
             <div class="bd">
                     <h3 class="teamh3">CRASH ZONE</h3>
-                    <h4 class="teamh4">Members</h4>
+                    <h4 class="teamh4">Team Members</h4>
                     <ul>
                         <div class="list">
-                        <li>Kavindu Alwis</li>
+                        <li>Kavindu de Alwis</li>
                         <li>Navindu Wickramasinghe</li>
                         <li>Sanjula Samarasekara</li>
                         <li>Razik Ruzaik</li>

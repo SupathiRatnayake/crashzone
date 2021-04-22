@@ -21,8 +21,8 @@ class Footer extends React.Component{
                             <h3>ADS GO</h3>
                             <p>We are here to provide good service to the customer <br></br>
                             and  the  advertiser by  contacting  them  in smart way <br></br>
-                            and  help advertiser  to  promote  thier product  to the <br>
-                            </br>customer easliy ad eficiently</p>
+                            and  help advertiser  to  promote  thier products  to the <br>
+                            </br>customers easliy and eficiently</p>
                         </div>
                         <div claa="icons">
                             <img class="fbicon" src="assest/facebook.png" alt="fb"></img>

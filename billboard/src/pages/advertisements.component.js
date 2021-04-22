@@ -73,7 +73,7 @@ export default class advertisementsList extends Component {
     const { advertisements, currentAdvertisement, currentIndex } = this.state;
 
     return (
-      <div className="list row">
+      <div className="list-row">
         <div className="col-md-6">
           <h3 class="topic">Advertisements List</h3>
 
