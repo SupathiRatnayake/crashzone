@@ -6,29 +6,24 @@ import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
 import DisplayAd from './pages/DisplayAd';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import About from './pages/about';
-import Team from './pages/team';
-
-
 
 function App() {
   return (
-    <div>
     <Router>
-      <Header/>
-        <Switch>
-          <Route exact path='/' component={Main} /> // was changed from home to main
-          <Route path='/main' component={Main}/>
-          <Route path='/advertisements' component={ Advertisements } />
-          <Route path='/display' component = { DisplayAd } />
-          <Route path='/about' component = {About}/>
-          <Route path='/team' component = {Team}/>
-        </Switch>
-        <Footer/>
+    <div>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light float-right">
+        <Link to="/" className="nav-link">Dashboard</Link>
+        <Link to="/advertisements" className="nav-link">Advertisements</Link>
+        <Link to= "/display" className="nav-link">DisplayAd</Link>
+      </nav>
+      <Switch>
+        <Route exact path='/' component={Main} /> // was changed from home to main
+        // <Route path='/main' component={Main}/>
+        <Route path='/advertisements' component={ Advertisements } />
+        <Route path='/display' component = { DisplayAd } />
+      </Switch>
+      </div>
     </Router>
-    </div>
   )
 }
 
