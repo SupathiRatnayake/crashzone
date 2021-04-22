@@ -15,14 +15,46 @@ class DisplayAd extends React.Component{
     };
   }
 
+  //classification of audience
+  requestAd(){
+    let outfitClasses =[
+      't-shirt',
+      'shirt',
+      'dress',
+      'blouse',
+      'skirt',
+      'shoes',
+      'shorts',
+      'pants',
+      'outwear'
+    ]
+
+    var predictionResult = '';
+
+
+    if(predictionResult == 'shirt' || predictionResult == 'dress') {
+      console.log('ad class = professional! ')
+    }else if( predictionResult == 't-shirt' || predictionResult == 'shorts' || predictionResult == 'blouse') {
+      console.log('ad class = non professional!')
+    }else if(predictionResult == 'outwear' || predictionResult =='shoes'){
+      console.log('ad class = Cassual!')
+    }else{
+      console.log('ad class = Genaral!')
+    }
+
+  }
+
+  //button to previous ad
   back() {
     this.slideRef.current.goBack();
   }
 
+  //button to next button
   next() {
     this.slideRef.current.goNext();
   }
 
+  
   render() {
     const properties = {
       duration: 5000,
@@ -35,37 +67,13 @@ class DisplayAd extends React.Component{
     };
     const slideImages = [
 
-      {
-        "name" : "Hits On Fire",
-        "targetProfessionals": false,
-        "imageURL": "",
-      },
-      {
-        "name" : "So Far So Good",
-        "targetProfessionals": true,
-        "imageURL": "",
-      },
-      {
-        "name" : "The Best of Me",
-        "targetProfessionals": false,
-        "imageURL": "",
-      },
-      {
-        "name" : "Run to You",
-        "targetProfessionals": true,
-        "imageURL": "",
-      },
-      {
-        "name" : "Summer of '69",
-        "targetProfessionals": true,
-        "imageURL": "",
-      },
-      {
-        "name" : "Victim of Love",
-        "targetProfessionals": false,
-        "imageURL": "",
-      }
-    
+      "https://firebasestorage.googleapis.com/v0/b/crash-zone.appspot.com/o/ad(1).jpg?alt=media&token=4f18d446-7507-4f75-83d7-fa84464dcaf8",
+      "https://firebasestorage.googleapis.com/v0/b/crash-zone.appspot.com/o/ad(2).jpg?alt=media&token=63295d2f-0a0a-49d3-803d-0d94f2cd5579",
+      "https://firebasestorage.googleapis.com/v0/b/crash-zone.appspot.com/o/ad(3).jpg?alt=media&token=6f8432a0-62fa-46e2-89c0-ec4c687c4991",
+      "https://firebasestorage.googleapis.com/v0/b/crash-zone.appspot.com/o/ad(4).jpg?alt=media&token=4b14993d-968e-4668-881d-1f2f3070d9cc",
+      "https://firebasestorage.googleapis.com/v0/b/crash-zone.appspot.com/o/ad(5).png?alt=media&token=c2b9a183-59e8-49ca-b2db-33075fe9cf8a",
+      "https://firebasestorage.googleapis.com/v0/b/crash-zone.appspot.com/o/ad(6).png?alt=media&token=d8ee66d7-1453-4c9a-8ae2-51ee4d888c10",
+  
     ];
     return (
       <div class="App">
